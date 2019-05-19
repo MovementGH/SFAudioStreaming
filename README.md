@@ -1,2 +1,1 @@
-# SFAudioStreaming
-Lightweight audio streaming library
+SFAudioStreaming is a fast, lightweight audio streaming library using SFML.
