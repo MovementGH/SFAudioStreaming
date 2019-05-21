@@ -11,17 +11,15 @@
 #include <SFML/Network.hpp>
 #include <thread>
 #include "Filters.hpp"
+#include "Codecs.hpp"
 class OutboundStreamer {
 public:
     OutboundStreamer();
     ~OutboundStreamer();
     void Connect(sf::IpAddress IP,unsigned short Port);
     void Disconnect();
-    template <typename Filter>
-    void SetFilter() {
-        delete m_Filter;
-        m_Filter=new Filter();
-    }
+    template <typename Filter> void SetFilter() { delete m_Filter; m_Filter=new Filter(); }
+    template <typename Codec> void SetCodec() { delete m_Codec; m_Codec=new Codec(); }
     void InjectSamples(std::vector<sf::Int16>& Samples);
 private:
     void SendSamples(std::vector<sf::Int16>& Samples);
@@ -32,6 +30,7 @@ protected:
     std::thread* m_ProcotolListener;
     ConnectionStatus m_Status;
     StreamerFilter* m_Filter;
+    StreamerCodec* m_Codec;
     bool m_ProtocolListen;
 };
 #endif /* Outbound_Streamer_hpp */

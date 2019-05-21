@@ -11,7 +11,6 @@
 #include <SFML/System.hpp>
 #include <opus.h>
 #include <vector>
-
 enum ConnectionStatus {
     Disconnected,
     Connecting,
@@ -26,24 +25,5 @@ public:
 class BandwidthFilter : public StreamerFilter {
 public:
     virtual bool FilterSamples(std::vector<sf::Int16>& Samples);
-};
-
-class OpusEncoderFilter : public StreamerFilter {
-public:
-    OpusEncoderFilter();
-    ~OpusEncoderFilter();
-    virtual bool FilterSamples(std::vector<sf::Int16>& Samples);
-    OpusEncoder* m_Encoder;
-    std::vector<unsigned char> m_Samples;
-    std::vector<sf::Int16> m_Buffer;
-};
-
-class OpusDecoderFilter: public StreamerFilter {
-public:
-    OpusDecoderFilter();
-    ~OpusDecoderFilter();
-    virtual bool FilterSamples(std::vector<sf::Int16>& Samples);
-    OpusDecoder* m_Decoder;
-    std::vector<unsigned char> m_Samples;
 };
 #endif /* Filters_hpp */

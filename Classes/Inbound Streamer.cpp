@@ -8,6 +8,7 @@
 #include "Inbound Streamer.hpp"
 InboundStreamer::InboundStreamer() {
     m_Filter=new StreamerFilter();
+    m_Codec=new StreamerCodec();
     m_ProtocolListen=true;
     m_DataListen=true;
     m_ProtocolListener=new std::thread([&]{ProtocolListener();});
@@ -29,6 +30,7 @@ InboundStreamer::~InboundStreamer() {
     delete m_ProtocolListener;
     delete m_DataListener;
     delete m_Filter;
+    delete m_Codec;
     if(m_ConnectionListener)
         delete m_ConnectionListener;
 }
@@ -106,6 +108,7 @@ void InboundStreamer::DataListener() {
                 Samples.resize(SampleCount);
                 for(int i=0;i<Samples.size();i++)
                     Packet>>Samples[i];
+                m_Codec->Decode(Samples);
                 if(m_Filter->FilterSamples(Samples)) {
                     while(m_UsingBuffer){sf::sleep(sf::seconds(0.001));}
                     m_UsingBuffer=true;

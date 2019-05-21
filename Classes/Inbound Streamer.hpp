@@ -11,6 +11,7 @@
 #include <SFML/Network.hpp>
 #include <thread>
 #include "Filters.hpp"
+#include "Codecs.hpp"
 
 class InboundStreamer {
 public:
@@ -18,11 +19,8 @@ public:
     ~InboundStreamer();
     void Listen(unsigned short Port);
     void Disconnect();
-    template<typename Filter>
-    void SetFilter() {
-        delete m_Filter;
-        m_Filter=new Filter();
-    }
+    template<typename Filter> void SetFilter() { delete m_Filter; m_Filter=new Filter(); }
+    template<typename Codec> void SetCodec() { delete m_Codec; m_Codec=new Codec(); }
     void GetSampleBuffer(std::vector<sf::Int16>& Samples,sf::Uint16 Amount);
     void SetBufferSize(sf::Uint8 Size);
     sf::Uint8 GetBufferSize();
@@ -37,6 +35,7 @@ protected:
     std::thread* m_ConnectionListener;
     ConnectionStatus m_Status;
     StreamerFilter* m_Filter;
+    StreamerCodec* m_Codec;
     bool m_ProtocolListen;
     bool m_DataListen;
     bool m_UsingBuffer;

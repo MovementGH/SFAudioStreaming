@@ -9,6 +9,7 @@
 #include "Outbound Streamer.hpp"
 OutboundStreamer::OutboundStreamer() {
     m_Filter=new StreamerFilter();
+    m_Codec=new StreamerCodec();
     m_ProtocolListen=true;
     m_ProcotolListener=new std::thread([&]{ProtocolListener();});
     m_ProtocolSocket.setBlocking(false);
@@ -21,6 +22,7 @@ OutboundStreamer::~OutboundStreamer() {
     m_ProcotolListener->join();
     delete m_ProcotolListener;
     delete m_Filter;
+    delete m_Codec;
 }
 void OutboundStreamer::Connect(sf::IpAddress IP,unsigned short Port) {
     if(m_Status==ConnectionStatus::Disconnected) {
@@ -37,6 +39,7 @@ void OutboundStreamer::Disconnect() {
 }
 void OutboundStreamer::InjectSamples(std::vector<sf::Int16>& Samples) {
     if(m_Filter->FilterSamples(Samples))
+        m_Codec->Encode(Samples),
         SendSamples(Samples);
 }
 void OutboundStreamer::ProtocolListener() {
