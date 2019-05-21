@@ -35,3 +35,12 @@
 
 /DerivedData
 *.xcodeproj
+
+# Derived VS 2019 Files
+
+/Debug
+/Release
+/.vs
+*.sln
+*.vcxproj*
+.gitattributes
