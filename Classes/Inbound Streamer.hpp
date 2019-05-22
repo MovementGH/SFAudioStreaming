@@ -12,15 +12,16 @@
 #include <thread>
 #include "Filters.hpp"
 #include "Codecs.hpp"
-
 class InboundStreamer {
 public:
     InboundStreamer();
     ~InboundStreamer();
     void Listen(unsigned short Port);
     void Disconnect();
-    template<typename Filter> void SetFilter(Filter* FilterPtr=nullptr) { delete m_Filter; if(!FilterPtr) m_Filter=new Filter(); else m_Filter=FilterPtr; }
-    template<typename Codec> void SetCodec(Codec* CodecPtr=nullptr) { delete m_Codec; if(!CodecPtr) m_Codec=new Codec(); else m_Codec=CodecPtr; }
+    template<typename Filter> void SetFilter(){SetFilter(new Filter());}
+    template<typename Codec> void SetCodec(){SetCodec(new Codec());}
+    template<typename Filter> void SetFilter(Filter* FilterPtr=nullptr) { delete m_Filter; m_Filter=FilterPtr; }
+    template<typename Codec> void SetCodec(Codec* CodecPtr) { delete m_Codec; m_Codec=CodecPtr; }
     void GetSampleBuffer(std::vector<sf::Int16>& Samples,sf::Uint16 Amount);
     void SetBufferSize(sf::Uint8 Size);
     sf::Uint8 GetBufferSize();
