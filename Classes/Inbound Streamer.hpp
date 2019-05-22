@@ -20,7 +20,7 @@ public:
     void Disconnect();
     template<typename Filter> void SetFilter(){SetFilter(new Filter());}
     template<typename Codec> void SetCodec(){SetCodec(new Codec());}
-    template<typename Filter> void SetFilter(Filter* FilterPtr=nullptr) { delete m_Filter; m_Filter=FilterPtr; }
+    template<typename Filter> void SetFilter(Filter* FilterPtr) { delete m_Filter; m_Filter=FilterPtr; }
     template<typename Codec> void SetCodec(Codec* CodecPtr) { delete m_Codec; m_Codec=CodecPtr; }
     void GetSampleBuffer(std::vector<sf::Int16>& Samples,sf::Uint16 Amount);
     void SetBufferSize(sf::Uint8 Size);
