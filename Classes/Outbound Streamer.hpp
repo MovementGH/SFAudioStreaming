@@ -18,8 +18,8 @@ public:
     ~OutboundStreamer();
     void Connect(sf::IpAddress IP,unsigned short Port);
     void Disconnect();
-    template<typename Filter> void SetFilter(Filter* FilterPtr=nullptr) { delete m_Filter; m_Filter=(FilterPtr?FilterPtr:new Filter()); }
-    template<typename Codec> void SetCodec(Codec* CodecPtr=nullptr) { delete m_Codec; m_Codec=(CodecPtr?CodecPtr:new Codec()); }
+    template<typename Filter> void SetFilter(Filter* FilterPtr=nullptr) { delete m_Filter; m_Filter=((FilterPtr!=nullptr)?FilterPtr:(new Filter())); }
+    template<typename Codec> void SetCodec(Codec* CodecPtr=nullptr) { delete m_Codec; m_Codec=((CodecPtr!=nullptr)?CodecPtr:(new Codec())); }
     void InjectSamples(std::vector<sf::Int16>& Samples);
 private:
     void SendSamples(std::vector<sf::Int16>& Samples);
