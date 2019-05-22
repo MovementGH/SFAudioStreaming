@@ -18,7 +18,7 @@ public:
 
 class OpusCodec : public StreamerCodec {
 public:
-    OpusCodec();
+    OpusCodec(int m_Bitrate=64000);
     ~OpusCodec();
     virtual void Encode(std::vector<sf::Int16>& Samples);
     virtual void Decode(std::vector<sf::Int16>& Samples);
@@ -26,5 +26,6 @@ public:
     OpusDecoder* m_Decoder;
     std::vector<unsigned char> m_Samples;
     std::vector<sf::Int16> m_Buffer;
+    int m_Bitrate;
 };
 #endif /* Codecs_hpp */

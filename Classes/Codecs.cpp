@@ -14,9 +14,10 @@ void StreamerCodec::Decode(std::vector<sf::Int16>& Samples) {
 }
 
 
-OpusCodec::OpusCodec() {
+OpusCodec::OpusCodec(int m_Bitrate) {
     int Error=0;
     m_Encoder=opus_encoder_create(48000,2,OPUS_APPLICATION_AUDIO,&Error);
+    opus_encoder_ctl(m_Encoder,OPUS_SET_BITRATE(m_Bitrate));
     m_Decoder=opus_decoder_create(48000,2,&Error);
     m_Buffer.resize(0);
     m_Samples.resize(1000);

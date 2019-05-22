@@ -19,8 +19,8 @@ public:
     ~InboundStreamer();
     void Listen(unsigned short Port);
     void Disconnect();
-    template<typename Filter> void SetFilter() { delete m_Filter; m_Filter=new Filter(); }
-    template<typename Codec> void SetCodec() { delete m_Codec; m_Codec=new Codec(); }
+    template<typename Filter> void SetFilter(Filter* FilterPtr=nullptr) { delete m_Filter; m_Filter=(FilterPtr?FilterPtr:new Filter()); }
+    template<typename Codec> void SetCodec(Codec* CodecPtr=nullptr) { delete m_Codec; m_Codec=(CodecPtr?CodecPtr:new Codec()); }
     void GetSampleBuffer(std::vector<sf::Int16>& Samples,sf::Uint16 Amount);
     void SetBufferSize(sf::Uint8 Size);
     sf::Uint8 GetBufferSize();
