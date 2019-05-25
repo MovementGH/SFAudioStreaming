@@ -1,10 +1,4 @@
-//
-//  Inbound Streamer.cpp
-//  SFAudioStreaming
-//
-//  Created by Mayo Furgerson on 5/18/19.
-//  Copyright © 2019 WimMa Games. All rights reserved.
-//
+
 #include "Inbound Streamer.hpp"
 InboundStreamer::InboundStreamer() {
     m_Filter=new StreamerFilter();

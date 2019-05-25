@@ -1,10 +1,4 @@
-//
-//  Codecs.cpp
-//  SFAudioStreaming
-//
-//  Created by Mayo Furgerson on 5/19/19.
-//  Copyright © 2019 WimMa Games. All rights reserved.
-//
+
 #include "Codecs.hpp"
 void StreamerCodec::Encode(std::vector<sf::Int16>& Samples) {
     

@@ -1,10 +1,4 @@
-//
-//  Codecs.hpp
-//  SFAudioStreaming
-//
-//  Created by Mayo Furgerson on 5/19/19.
-//  Copyright © 2019 WimMa Games. All rights reserved.
-//
+
 #ifndef Codecs_hpp
 #define Codecs_hpp
 #include <SFML/System.hpp>

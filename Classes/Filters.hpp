@@ -1,10 +1,4 @@
-//
-//  Filters.hpp
-//  SFAudioStreaming
-//
-//  Created by Mayo Furgerson on 5/18/19.
-//  Copyright © 2019 WimMa Games. All rights reserved.
-//
+
 
 #ifndef Filters_hpp
 #define Filters_hpp
